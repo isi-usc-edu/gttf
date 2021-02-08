@@ -1,0 +1,2 @@
+ls ~/data/asymproj || echo `mkdir -p ~/data/asymproj; cd ~/data/asymproj; curl http://sami.haija.org/graph/datasets.tgz > datasets.tgz; tar zxvf datasets.tgz`
+python3 train_tf_skipgram.py --dataset_dir=~/data/asymproj/datasets/ca-HepTh --steps=10000 --lr 0.01 --d 128 --neg_samples=20 --batch_size=1000

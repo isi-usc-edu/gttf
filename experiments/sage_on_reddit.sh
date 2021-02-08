@@ -1,0 +1,1 @@
+python3 train_torch_sage.py --data_dir=../../../datasets --dataset=reddit --epochs=10 --batch_size=1024 --fanouts=25x10 --lr=0.0005 --hidden_dims=256,256 --dropout=0.5 --num_workers=6 --device=cuda
