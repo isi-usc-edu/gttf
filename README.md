@@ -1,6 +1,8 @@
 # Graph Traversal with Tensor Functionals (GTTF)
 
-GTTF is a framework for developing and using scalable graph learning models. 
+GTTF is a framework for developing and using scalable graph learning models.
+
+This is the public version. Stay tuned for coming updates!
 
 ## Usage
 
