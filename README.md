@@ -31,8 +31,13 @@ TODO: add final scalability table
 If GTTF contributed to the development of your research, please cite our paper
 
 ```
-@article{
-    TBD
+@inproceedings{
+    GTTF2021,
+    title={Graph Traversal with Tensor Functionals: A Meta-Algorithm for Scalable Learning},
+    author={Elan Sopher Markowitz and Keshav Balasubramanian and Mehrnoosh Mirtaheri and Sami Abu-El-Haija and Bryan Perozzi and Greg Ver Steeg and Aram Galstyan},
+    booktitle={International Conference on Learning Representations},
+    year={2021},
+    url={https://openreview.net/forum?id=6DOZ8XNNfGN}
 }
 ```
 
