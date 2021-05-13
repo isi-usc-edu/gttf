@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-def kipf_renorm_tf(adj):
+def kipf_renorm_tf(adj, return_normalizer=False):
   # adj: a tf sparse tensor, possibly on gpu
   # Kipf's re-norm trick
   adj = tf.sparse.maximum(adj, tf.sparse.transpose(adj))  # Make symmetric
@@ -13,10 +13,11 @@ def kipf_renorm_tf(adj):
 
   sums = tf.sparse.reduce_sum(adj, 1)
   inv_sqrt_degree = tf.sqrt(1.0/sums)
-  # convert infinities to zeros
-  #inv_sqrt_degree = tf.math.multiply_no_nan(inv_sqrt_degree, tf.cast(inv_sqrt_degree < 2, tf.float32))
   normed_adj = adj * inv_sqrt_degree * tf.reshape(inv_sqrt_degree, (num_nodes,1))
-  return normed_adj
+  if return_normalizer:
+    return normed_adj, inv_sqrt_degree
+  else:
+    return normed_adj
 
 
 
