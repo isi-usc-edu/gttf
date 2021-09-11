@@ -84,17 +84,8 @@ class SampledAdjacency:
 
   def _lazy_tf_trimmed(self):
     sampled_nodes = self.sampled_nodes
-    rows, cols = self.csr_trimmed.nonzero()
-    tf = self._tf
-    #import IPython; IPython.embed()
-    indices = tf.stack([
-        tf.convert_to_tensor(rows, dtype=tf.int64),
-        tf.convert_to_tensor(cols, dtype=tf.int64),
-    ], axis=-1)
-    values = tf.ones(rows.shape, dtype=tf.float32)
-    return tf.sparse.SparseTensor(indices, values,
-                                  dense_shape=(sampled_nodes.shape[0], sampled_nodes.shape[0]))
-
+    return csr_binary_matrix_to_tf(self.csr_trimmed.nonzero())
+    
   def _lazy__tf(self):
     import tensorflow
     return tensorflow
@@ -155,6 +146,20 @@ def accumulate_unique_edges(walk_forest, directed=False):
 
 def forest_to_loss_accumulation(walk_forest):
   pass
+
+
+
+def csr_binary_matrix_to_tf(mat):
+  import tensorflow as tf
+  rows, cols = mat.nonzero()
+  indices = tf.stack([
+      tf.convert_to_tensor(rows, dtype=tf.int64),
+      tf.convert_to_tensor(cols, dtype=tf.int64),
+  ], axis=-1)
+  values = tf.ones(rows.shape, dtype=tf.float32)
+  return tf.sparse.SparseTensor(indices, values,
+                                dense_shape=(mat.shape[0], mat.shape[0]))
+
 
 # NOT USED YET
 
